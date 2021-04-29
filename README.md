@@ -3,8 +3,8 @@ Tasks:
 2.
 3. Stas
 4.
-5.
+5. Stas
 6. Ilya
 7. Ilya
-8.
+8. Ilya
 9.
