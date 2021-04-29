@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Donsg/Documents/GitHub/thread_kr/V7.cpp
+windows.h
+C:/Users/Donsg/Documents/GitHub/thread_kr/windows.h
+iostream
+C:/Users/Donsg/Documents/GitHub/thread_kr/iostream
+process.h
+C:/Users/Donsg/Documents/GitHub/thread_kr/process.h
+

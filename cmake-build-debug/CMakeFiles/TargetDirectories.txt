@@ -1,0 +1,4 @@
+C:/Users/Donsg/Documents/GitHub/thread_kr/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Donsg/Documents/GitHub/thread_kr/cmake-build-debug/CMakeFiles/V1.dir
+C:/Users/Donsg/Documents/GitHub/thread_kr/cmake-build-debug/CMakeFiles/V7.dir
+C:/Users/Donsg/Documents/GitHub/thread_kr/cmake-build-debug/CMakeFiles/rebuild_cache.dir
