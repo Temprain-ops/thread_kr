@@ -1,4 +1,4 @@
-// V6.cpp : This file contains the 'main' function. Program execution begins
+// V8.cpp : This file contains the 'main' function. Program execution begins
 // and ends there.
 //
 
@@ -7,27 +7,29 @@
 #include "windows.h"
 #include "iostream"
 #include "process.h"
-#define threads 15
-#define M 12
+#define threads 8
+#define M 13
 typedef struct MyData {
     int val1;
 } MYDATA, * PMYDATA;
 
 int counter = 0;
-HANDLE ghMutex;
+HANDLE hSemaphore;
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
     PMYDATA pDataArray;
     pDataArray = (PMYDATA)lpParam;
     int numThread = pDataArray->val1;
-    ghMutex=OpenMutex(SYNCHRONIZE,false,_T("mutex"));
-    WaitForSingleObject(ghMutex,INFINITE);
+    WaitForSingleObject(hSemaphore,	INFINITE);
     for (int i = 0; i < M; ++i) {
         counter += numThread;
         std::cout <<numThread<<" "<< counter << std::endl;
     }
-    ReleaseMutex(ghMutex);
+    ReleaseSemaphore(
+            hSemaphore,	// указатель на светофор
+            1,		// изменяет счетчик на 1
+            NULL);
     return 0;
 }
 
@@ -37,8 +39,13 @@ int main()
     DWORD   dwThreadIdArray[threads];
     HANDLE  hThreadArray[threads];
 
-    HANDLE mut;
-    mut = CreateMutex(NULL, FALSE, "mutex");
+
+    hSemaphore = CreateSemaphore(
+            NULL,	// нет атрибута
+            1,	// начальное состояние
+            1,	// максимальное состояние
+            "semaph"
+    );
 
     for (int i = 0; i < threads; ++i) {
         pDataArray[i] = (PMYDATA)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY,
@@ -55,6 +62,7 @@ int main()
         ResumeThread(hThreadArray[i]);
     }
     WaitForMultipleObjects(threads, hThreadArray, TRUE, INFINITE);
+    std::cout.flush();
     return 0;
 }
 
